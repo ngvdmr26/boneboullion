@@ -31,7 +31,7 @@ export function IntroSplashScreen() {
         >
           {/* Full Screen Intro Video */}
           <video
-            src="/intro/Orange_background_with_avatar_202607040015 (online-video-cutter.com).mp4"
+            src="/intro/Orange_background_with_avatar_202607040015_online_video_cutter-nS3lblnn87HuiJ_seg1_0ecf172d-9bd5-4a3e-91a4-67cc13a09b5f.mp4"
             autoPlay
             muted
             playsInline
@@ -40,10 +40,10 @@ export function IntroSplashScreen() {
             className="size-full object-cover"
           />
 
-          {/* Quick Skip Overlay */}
+          {/* Premium Skip Pill at Top-Right (iOS-style glassmorphic design) */}
           <button
             onClick={handleClose}
-            className="absolute bottom-10 right-6 rounded-full bg-white/25 px-5 py-2 text-xs font-bold text-white backdrop-blur-md border border-white/20 active:scale-95 transition-all shadow-md"
+            className="absolute top-6 right-5 rounded-full bg-black/30 backdrop-blur-xl border border-white/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.15em] text-white/90 active:scale-95 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.1)]"
           >
             Пропустить
           </button>
