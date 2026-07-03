@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { ChevronRight, Heart, ShoppingBag } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useProduct } from '@/hooks/useCatalog'
@@ -10,6 +10,7 @@ import { ProductBadge } from '@/components/ui/Badge'
 import { ProductImage } from '@/components/catalog/ProductImage'
 import { useCart } from '@/context/CartContext'
 import { useFavorites } from '@/context/FavoritesContext'
+import { useUI } from '@/context/UIContext'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -33,10 +34,10 @@ const itemVariants = {
 
 export function ProductPage() {
   const { slug = '' } = useParams()
-  const navigate = useNavigate()
   const { data: product, isLoading } = useProduct(slug)
   const { add } = useCart()
   const { has, toggle } = useFavorites()
+  const { showToast } = useUI()
   const [qty, setQty] = useState(1)
 
   if (isLoading) {
@@ -118,9 +119,21 @@ export function ProductPage() {
 
         {/* details */}
         <motion.div variants={itemVariants} className="flex flex-col">
-          <h1 className="font-display text-3xl font-extrabold sm:text-4xl lg:text-5xl text-ink leading-tight">
-            {product.name}
-          </h1>
+          <div className="flex items-start justify-between gap-4">
+            <h1 className="font-display text-3xl font-extrabold sm:text-4xl lg:text-5xl text-ink leading-tight">
+              {product.name}
+            </h1>
+            <button
+              type="button"
+              onClick={() => toggle(product.id)}
+              aria-label={isFav ? 'Убрать из избранного' : 'В избранное'}
+              aria-pressed={isFav}
+              className="flex size-12 shrink-0 items-center justify-center rounded-full bg-white text-ink ring-1 ring-line/60 transition-all duration-300 hover:scale-105 hover:text-brand-500 hover:shadow-md active:scale-95 mt-1"
+            >
+              <Heart className={`size-5.5 transition-all duration-300 ${isFav ? 'fill-brand-500 text-brand-500 scale-110' : ''}`} />
+            </button>
+          </div>
+          
           <p className="mt-2.5 text-sm sm:text-base text-ink-muted font-semibold">{product.volume}</p>
 
           <div className="mt-6 flex items-baseline gap-3">
@@ -146,22 +159,13 @@ export function ProductPage() {
               className="shadow-[0_4px_20px_rgba(242,169,0,0.3)] flex-1 sm:flex-initial"
               onClick={() => {
                 add(product.id, qty)
-                navigate('/cart')
+                showToast(`${product.name} добавлен в корзину`)
               }}
               disabled={!product.inStock}
             >
               <ShoppingBag className="size-5" />
               В корзину · {formatPrice(product.price * qty)}
             </Button>
-            <button
-              type="button"
-              onClick={() => toggle(product.id)}
-              aria-label={isFav ? 'Убрать из избранного' : 'В избранное'}
-              aria-pressed={isFav}
-              className="flex size-14 items-center justify-center rounded-full bg-white text-ink ring-1 ring-line/60 transition-all duration-300 hover:scale-105 hover:text-brand-500 hover:shadow-md active:scale-95"
-            >
-              <Heart className={`size-6 transition-all duration-300 ${isFav ? 'fill-brand-500 text-brand-500 scale-110' : ''}`} />
-            </button>
           </div>
 
           {/* composition */}

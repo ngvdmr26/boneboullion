@@ -7,10 +7,12 @@ import { ProductBadge } from '@/components/ui/Badge'
 import { ProductImage } from './ProductImage'
 import { useCart } from '@/context/CartContext'
 import { useFavorites } from '@/context/FavoritesContext'
+import { useUI } from '@/context/UIContext'
 
 export function ProductCard({ product }: { product: Product }) {
   const { add, quantityOf } = useCart()
   const { has, toggle } = useFavorites()
+  const { showToast } = useUI()
   const inCart = quantityOf(product.id)
   const isFav = has(product.id)
 
@@ -89,7 +91,10 @@ export function ProductCard({ product }: { product: Product }) {
 
           <button
             type="button"
-            onClick={() => add(product.id)}
+            onClick={() => {
+              add(product.id)
+              showToast(`${product.name} добавлен в корзину`)
+            }}
             aria-label={`Добавить «${product.name}» в корзину`}
             className="flex size-9 sm:size-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-brand-500 to-brand-600 text-white shadow-[0_4px_16px_rgba(242,169,0,0.3)] transition-[transform,background-color,box-shadow] duration-200 ease-out hover:shadow-[0_6px_24px_rgba(242,169,0,0.4)] active:scale-[0.96]"
           >

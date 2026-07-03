@@ -1,19 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 export function IntroSplashScreen() {
-  const [show, setShow] = useState(false)
-
-  useEffect(() => {
-    // Only play on mobile viewports (< 1024px)
-    if (window.innerWidth >= 1024) return
-
-    // Play only once per session (survives minimize/resume, resets on full app close)
-    const played = sessionStorage.getItem('intro_played')
-    if (!played) {
-      setShow(true)
+  const [show, setShow] = useState(() => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 1024) return false
+      return !sessionStorage.getItem('intro_played')
     }
-  }, [])
+    return false
+  })
 
   const handleClose = () => {
     sessionStorage.setItem('intro_played', 'true')
@@ -34,6 +29,7 @@ export function IntroSplashScreen() {
             src="/intro/Orange_background_with_avatar_202607040015_online_video_cutter-nS3lblnn87HuiJ_seg1_0ecf172d-9bd5-4a3e-91a4-67cc13a09b5f.mp4"
             autoPlay
             muted
+            preload="auto"
             playsInline
             onEnded={handleClose}
             onClick={handleClose}

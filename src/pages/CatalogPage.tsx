@@ -86,7 +86,7 @@ export function CatalogPage() {
 
       {/* Center aligned segment bar for categories on both desktop and mobile */}
       {categories && (
-        <motion.div variants={itemVariants} className="mt-8 w-full">
+        <motion.div variants={itemVariants} className="mt-2 w-full">
           <CategoryChips categories={categories} />
         </motion.div>
       )}
