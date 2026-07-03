@@ -47,7 +47,7 @@ export function Hero() {
   }, [])
 
   return (
-    <section className="relative flex min-h-[50vh] sm:min-h-[60vh] lg:min-h-[70vh] max-h-[550px] xl:max-h-[650px] items-center overflow-hidden bg-black select-none">
+    <section className="relative hidden lg:flex min-h-[50vh] sm:min-h-[60vh] lg:min-h-[70vh] max-h-[550px] xl:max-h-[650px] items-center overflow-hidden bg-black select-none">
       
       {/* Background Images Cross-Fade */}
       <div className="absolute inset-0">

@@ -1,11 +1,10 @@
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Heart, Menu, ShoppingBag, User, X } from 'lucide-react'
+import { Heart, ShoppingBag, User } from 'lucide-react'
 import { Logo } from './Logo'
 import { SearchBar } from '@/components/ui/SearchBar'
 import { useCart } from '@/context/CartContext'
 import { useFavorites } from '@/context/FavoritesContext'
-import { useUI } from '@/context/UIContext'
 
 function CountBadge({ count }: { count: number }) {
   return (
@@ -55,29 +54,10 @@ function ActionLink({
   )
 }
 
-const mobileMenuVariants = {
-  hidden: { height: 0, opacity: 0 },
-  visible: {
-    height: 'auto',
-    opacity: 1,
-    transition: { type: 'spring' as const, duration: 0.4, bounce: 0, staggerChildren: 0.06 },
-  },
-  exit: {
-    height: 0,
-    opacity: 0,
-    transition: { type: 'spring' as const, duration: 0.3, bounce: 0 },
-  },
-} as const
-
-const mobileMenuItemVariants = {
-  hidden: { opacity: 0, x: -12 },
-  visible: { opacity: 1, x: 0, transition: { type: 'spring' as const, duration: 0.3, bounce: 0 } },
-} as const
 
 export function Header() {
   const { itemCount } = useCart()
   const { count: favCount } = useFavorites()
-  const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } = useUI()
 
   return (
     <motion.header
@@ -133,66 +113,13 @@ export function Header() {
       </div>
 
       {/* Mobile */}
-      <div className="lg:hidden">
-        <div className="flex items-center justify-between px-4 py-4">
-          <button
-            type="button"
-            onClick={toggleMobileMenu}
-            aria-label={isMobileMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
-            className="flex size-10 items-center justify-center rounded-xl text-ink transition-all duration-300 ease-out hover:bg-brand-50/80 active:scale-90"
-          >
-            {isMobileMenuOpen ? (
-              <X className="size-6" strokeWidth={2.2} />
-            ) : (
-              <Menu className="size-6" strokeWidth={2.2} />
-            )}
-          </button>
+      <div className="lg:hidden bg-white/80 backdrop-blur-2xl border-b border-line/45">
+        <div className="flex items-center justify-center px-4 py-3">
           <Logo />
-          <Link
-            to="/cart"
-            aria-label="Корзина"
-            className="relative flex size-10 items-center justify-center rounded-xl text-ink transition-all duration-300 ease-out hover:bg-brand-50/80 active:scale-90"
-          >
-            <ShoppingBag className="size-6" strokeWidth={2} />
-            <CountBadge count={itemCount} />
-          </Link>
         </div>
         <div className="px-4 pb-3">
           <SearchBar />
         </div>
-
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.nav
-              variants={mobileMenuVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="overflow-hidden border-t border-line/50 bg-white/80 px-4 py-2 backdrop-blur-xl"
-            >
-              {[
-                { to: '/catalog', label: 'Каталог' },
-                { to: '/favorites', label: 'Избранное' },
-                { to: '/profile', label: 'Профиль' },
-                { to: '/cart', label: 'Корзина' },
-              ].map((link) => (
-                <motion.div key={link.to} variants={mobileMenuItemVariants}>
-                  <NavLink
-                    to={link.to}
-                    onClick={closeMobileMenu}
-                    className={({ isActive }) =>
-                      `block rounded-xl px-3 py-3 text-base font-medium transition-all duration-300 ${
-                        isActive ? 'bg-brand-50 text-brand-700' : 'text-ink hover:bg-brand-50/50'
-                      }`
-                    }
-                  >
-                    {link.label}
-                  </NavLink>
-                </motion.div>
-              ))}
-            </motion.nav>
-          )}
-        </AnimatePresence>
       </div>
     </motion.header>
   )

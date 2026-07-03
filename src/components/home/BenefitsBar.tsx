@@ -21,9 +21,9 @@ const card: Variants = {
 
 export function BenefitsBar() {
   return (
-    <section className="mx-auto mt-10 max-w-7xl px-4 sm:mt-14">
+    <section className="mx-auto mt-6 max-w-7xl px-5 sm:mt-14 overflow-hidden">
       <motion.div
-        className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6"
+        className="flex overflow-x-auto no-scrollbar scroll-smooth gap-4 pb-4 snap-x lg:grid lg:grid-cols-4 lg:gap-6"
         variants={container}
         initial="hidden"
         whileInView="show"
@@ -33,14 +33,14 @@ export function BenefitsBar() {
           <motion.div
             key={title}
             variants={card}
-            className="flex flex-col items-start gap-4 rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-line/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            className="flex flex-col items-start gap-4 rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-line/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shrink-0 w-[260px] snap-center lg:w-auto lg:shrink"
           >
             <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 to-brand-600 text-white shadow-[0_4px_12px_rgba(242,169,0,0.3)]">
               <Icon className="size-6" strokeWidth={2.2} />
             </span>
             <div>
               <h3 className="font-display text-base font-bold leading-tight">{title}</h3>
-              <p className="mt-1 text-sm text-ink-muted">{text}</p>
+              <p className="mt-1 text-xs sm:text-sm text-ink-muted leading-relaxed">{text}</p>
             </div>
           </motion.div>
         ))}

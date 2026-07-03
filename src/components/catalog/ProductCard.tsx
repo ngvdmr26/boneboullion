@@ -47,7 +47,7 @@ export function ProductCard({ product }: { product: Product }) {
         onClick={() => toggle(product.id)}
         aria-label={isFav ? 'Убрать из избранного' : 'В избранное'}
         aria-pressed={isFav}
-        className="absolute right-2.5 top-2.5 flex size-10 items-center justify-center rounded-full bg-white/90 text-ink shadow-lg backdrop-blur-md transition-[transform,color,box-shadow] duration-200 ease-out hover:scale-110 hover:text-brand-600 active:scale-90"
+        className="absolute right-2 top-2 flex size-8 sm:size-10 items-center justify-center rounded-full bg-white/90 text-ink shadow-lg backdrop-blur-md transition-[transform,color,box-shadow] duration-200 ease-out hover:scale-110 hover:text-brand-600 active:scale-90"
       >
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
@@ -56,9 +56,10 @@ export function ProductCard({ product }: { product: Product }) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.5, opacity: 0 }}
             transition={{ type: 'spring', duration: 0.3, bounce: 0 }}
+            className="flex items-center justify-center"
           >
             <Heart
-              className={`size-5 transition-[fill,color] duration-200 ease-out ${isFav ? 'fill-brand-600 text-brand-600' : ''}`}
+              className={`size-4 sm:size-5 transition-[fill,color] duration-200 ease-out ${isFav ? 'fill-brand-600 text-brand-600' : ''}`}
               strokeWidth={2}
             />
           </motion.span>
@@ -66,22 +67,22 @@ export function ProductCard({ product }: { product: Product }) {
       </button>
 
       {/* body */}
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-3.5 sm:p-5">
         <Link to={`/product/${product.slug}`} className="flex-1">
-          <h3 className="font-display text-base font-bold leading-snug text-ink transition-colors group-hover:text-brand-700">
+          <h3 className="font-display text-xs sm:text-base font-bold leading-snug text-ink transition-colors group-hover:text-brand-700 line-clamp-2">
             {product.name}
           </h3>
-          <p className="mt-1 text-sm text-ink-muted">{product.volume}</p>
+          <p className="mt-1 text-[10px] sm:text-sm text-ink-muted">{product.volume}</p>
         </Link>
 
-        <div className="mt-4 flex items-end justify-between gap-2">
+        <div className="mt-3 sm:mt-4 flex items-end justify-between gap-2">
           <div className="flex flex-col leading-none">
             {product.oldPrice && (
-              <span className="text-sm text-ink-muted/60 line-through tnum">
+              <span className="text-[10px] sm:text-sm text-ink-muted/60 line-through tnum">
                 {formatPrice(product.oldPrice)}
               </span>
             )}
-            <span className="font-sans text-xl font-extrabold text-ink tnum">
+            <span className="font-sans text-sm sm:text-xl font-extrabold text-ink tnum">
               {formatPrice(product.price)}
             </span>
           </div>
@@ -90,7 +91,7 @@ export function ProductCard({ product }: { product: Product }) {
             type="button"
             onClick={() => add(product.id)}
             aria-label={`Добавить «${product.name}» в корзину`}
-            className="flex size-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-brand-500 to-brand-600 text-white shadow-[0_4px_16px_rgba(242,169,0,0.3)] transition-[transform,background-color,box-shadow] duration-200 ease-out hover:shadow-[0_6px_24px_rgba(242,169,0,0.4)] active:scale-[0.96]"
+            className="flex size-9 sm:size-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-brand-500 to-brand-600 text-white shadow-[0_4px_16px_rgba(242,169,0,0.3)] transition-[transform,background-color,box-shadow] duration-200 ease-out hover:shadow-[0_6px_24px_rgba(242,169,0,0.4)] active:scale-[0.96]"
           >
             <AnimatePresence mode="popLayout" initial={false}>
               <motion.span
@@ -99,15 +100,15 @@ export function ProductCard({ product }: { product: Product }) {
                 animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
                 exit={{ scale: 0.25, opacity: 0, filter: 'blur(4px)' }}
                 transition={{ type: 'spring', duration: 0.3, bounce: 0 }}
-                className="flex items-center gap-0.5 text-sm font-bold tnum"
+                className="flex items-center gap-0.5 text-xs sm:text-sm font-bold tnum"
               >
                 {inCart > 0 ? (
                   <>
-                    <Check className="size-4" strokeWidth={3} />
+                    <Check className="size-3 sm:size-4" strokeWidth={3} />
                     {inCart}
                   </>
                 ) : (
-                  <Plus className="size-5" strokeWidth={2.6} />
+                  <Plus className="size-4.5 sm:size-5" strokeWidth={2.6} />
                 )}
               </motion.span>
             </AnimatePresence>

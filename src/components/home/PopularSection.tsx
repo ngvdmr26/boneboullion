@@ -15,7 +15,7 @@ export function PopularSection() {
   return (
     <motion.section
       id="popular"
-      className="mx-auto mt-12 max-w-7xl px-4 sm:mt-16"
+      className="mx-auto mt-10 max-w-7xl px-5 sm:mt-16"
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
@@ -31,7 +31,7 @@ export function PopularSection() {
           products={popular}
           loading={prodLoading}
           skeletonCount={4}
-          className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4"
+          className="grid grid-cols-2 gap-5 sm:gap-6 md:grid-cols-3 lg:grid-cols-4"
         />
       </div>
     </motion.section>

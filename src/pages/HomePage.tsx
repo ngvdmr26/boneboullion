@@ -18,6 +18,18 @@ export function HomePage() {
   return (
     <>
       <Hero />
+      
+      {/* Mobile Welcome Header */}
+      <div className="lg:hidden px-5 pt-8 pb-3 text-left">
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-600">BONE BOUILLON</span>
+        <h1 className="mt-2 font-display text-3xl font-extrabold text-ink leading-tight">
+          Настоящий бульон<br />для вашей энергии
+        </h1>
+        <p className="mt-2.5 text-xs sm:text-sm text-ink-muted/95 leading-relaxed">
+          24 часа медленного томления из фермерских ингредиентов. Доставка в день заказа.
+        </p>
+      </div>
+
       <Reveal>
         <BenefitsBar />
       </Reveal>
