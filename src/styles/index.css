@@ -1,0 +1,164 @@
+@import 'tailwindcss';
+
+/* ── BONE BOUILLON design tokens — premium natural food brand ───────────── */
+@theme {
+  /* Brand — warm golden spectrum */
+  --color-brand-50: #FFF9ED;
+  --color-brand-100: #FFF3D6;
+  --color-brand-200: #FFE4A8;
+  --color-brand-300: #FFD06A;
+  --color-brand-400: #FFBC30;
+  --color-brand-500: #F2A900; /* primary golden */
+  --color-brand-600: #DA9600;
+  --color-brand-700: #B57800;
+  --color-brand-800: #8C5D00;
+
+  /* Surfaces */
+  --color-surface: #FAFAF8;   /* almost white, subtle warmth */
+  --color-surface-2: #F5F5F0;
+  --color-card: #FFFFFF;
+  --color-ink: #1A1A1A;
+  --color-ink-muted: #6B6B6B;
+  --color-line: #E8E8E3;
+
+  /* Status */
+  --color-success: #34A853;
+  --color-danger: #EA4335;
+
+  /* Typography */
+  --font-display: 'Spectral', ui-serif, Georgia, serif;
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  /* Prices/numbers use the sans with tabular figures (not the serif) */
+  --font-price: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+
+  /* Radii — generous, Apple-level */
+  --radius-card: 24px;
+  --radius-card-lg: 28px;
+
+  /* Shadows — soft, multi-layered for natural depth */
+  --shadow-card:
+    0 1px 3px rgb(26 26 26 / 0.03),
+    0 4px 12px rgb(26 26 26 / 0.04),
+    0 14px 32px rgb(26 26 26 / 0.03);
+  --shadow-card-hover:
+    0 2px 6px rgb(26 26 26 / 0.04),
+    0 12px 28px rgb(26 26 26 / 0.07),
+    0 28px 56px rgb(26 26 26 / 0.08);
+  --shadow-pop:
+    0 4px 10px rgb(26 26 26 / 0.05),
+    0 18px 36px rgb(26 26 26 / 0.1),
+    0 40px 72px rgb(26 26 26 / 0.12);
+  /* Brand-tinted glow for primary actions */
+  --shadow-brand: 0 6px 20px rgb(242 169 0 / 0.3);
+  --shadow-brand-hover: 0 10px 30px rgb(242 169 0 / 0.4);
+  --shadow-glow: 0 0 20px rgb(242 169 0 / 0.25), 0 0 60px rgb(242 169 0 / 0.1);
+}
+
+/* ── Keyframe animations ────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings use the display serif by default */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* Avoid orphans in body copy */
+p {
+  text-wrap: pretty;
+}
+
+/* Subtle outline so imagery reads with consistent depth on any surface */
+.img-outline {
+  outline: 1px solid rgb(0 0 0 / 0.08);
+  outline-offset: -1px;
+}
+
+/* Eyebrow / overline */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-brand-600);
+  font-size: 0.75rem;
+}
+
+/* Tabular numerals for prices */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Hide scrollbar utility for horizontal scrollers */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Animation utility classes */
+.animate-shimmer {
+  animation: shimmer 2s infinite linear;
+  background-size: 200% 100%;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
