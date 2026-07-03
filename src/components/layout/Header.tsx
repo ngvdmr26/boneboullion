@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Heart, ShoppingBag, User } from 'lucide-react'
 import { Logo } from './Logo'
@@ -11,12 +11,11 @@ function CountBadge({ count }: { count: number }) {
     <AnimatePresence>
       {count > 0 && (
         <motion.span
-          key={count}
-          initial={{ scale: 0.4, opacity: 0 }}
+          initial={{ scale: 0.6, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.4, opacity: 0 }}
-          transition={{ type: 'spring', duration: 0.3, bounce: 0 }}
-          className="absolute -right-1.5 -top-1.5 flex min-w-5 items-center justify-center rounded-full bg-brand-500 px-1 text-[11px] font-bold text-white shadow-[0_0_12px_rgb(242_169_0/0.4)] tnum"
+          exit={{ scale: 0.6, opacity: 0 }}
+          transition={{ type: 'spring', duration: 0.25, bounce: 0.2 }}
+          className="absolute -right-1.5 -top-1 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-brand-500 px-1 text-[9px] font-black text-white tnum shadow-[0_2px_8px_rgba(242,169,0,0.4)]"
         >
           {count}
         </motion.span>
@@ -114,10 +113,30 @@ export function Header() {
 
       {/* Mobile */}
       <div className="lg:hidden bg-white/80 backdrop-blur-2xl border-b border-line/45">
-        <div className="flex items-center justify-center px-4 py-3">
+        <div className="flex items-center justify-between px-5 py-3">
           <Logo />
+          
+          <div className="flex items-center gap-3">
+            <Link
+              to="/favorites"
+              aria-label="Избранное"
+              className="relative flex size-10 items-center justify-center rounded-xl text-ink transition-all duration-300 ease-out hover:bg-brand-50/80 active:scale-90"
+            >
+              <Heart className="size-5.5" strokeWidth={2} />
+              {favCount > 0 && <CountBadge count={favCount} />}
+            </Link>
+            
+            <Link
+              to="/cart"
+              aria-label="Корзина"
+              className="relative flex size-10 items-center justify-center rounded-xl text-ink transition-all duration-300 ease-out hover:bg-brand-50/80 active:scale-90"
+            >
+              <ShoppingBag className="size-5.5" strokeWidth={2} />
+              {itemCount > 0 && <CountBadge count={itemCount} />}
+            </Link>
+          </div>
         </div>
-        <div className="px-4 pb-3">
+        <div className="px-5 pb-3">
           <SearchBar />
         </div>
       </div>

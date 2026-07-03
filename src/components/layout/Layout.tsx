@@ -5,6 +5,7 @@ import { Header } from './Header'
 import { Footer } from './Footer'
 import { MobileBottomNav } from './MobileBottomNav'
 import { InstallPrompt } from '@/components/pwa/InstallPrompt'
+import { IntroSplashScreen } from '@/components/ui/IntroSplashScreen'
 
 /** App shell: header, animated routed content, footer, mobile tab bar. */
 export function Layout() {
@@ -34,6 +35,7 @@ export function Layout() {
       <Footer />
       <MobileBottomNav />
       <InstallPrompt />
+      <IntroSplashScreen />
     </div>
   )
 }

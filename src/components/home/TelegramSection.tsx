@@ -15,9 +15,9 @@ const item: Variants = {
 
 export function TelegramSection() {
   return (
-    <section className="mx-auto mt-16 max-w-5xl px-4 sm:mt-24">
+    <section className="mx-auto mt-10 max-w-5xl px-5 sm:mt-24">
       <motion.div
-        className="relative overflow-hidden rounded-[32px] bg-white p-8 sm:p-12 border border-line/30 shadow-[0_4px_30px_rgba(0,0,0,0.02)] flex flex-col gap-8 md:flex-row md:items-center md:justify-between"
+        className="relative overflow-hidden rounded-[28px] bg-white p-5 sm:p-12 border border-line/30 shadow-[0_4px_30px_rgba(0,0,0,0.02)] flex flex-col gap-5 md:flex-row md:items-center md:justify-between"
         variants={container}
         initial="hidden"
         whileInView="show"
@@ -27,22 +27,22 @@ export function TelegramSection() {
         <div className="pointer-events-none absolute -right-24 -top-24 size-80 rounded-full bg-brand-100/30 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-20 -left-20 size-60 rounded-full bg-brand-200/10 blur-3xl" />
 
-        <div className="relative flex flex-col sm:flex-row items-start gap-5 max-w-xl">
+        <div className="relative flex flex-col sm:flex-row items-start gap-4 max-w-xl">
           <motion.span
             variants={item}
             animate={{ y: [0, -6, 0] }}
             transition={{ duration: 4, ease: 'easeInOut', repeat: Infinity }}
-            className="flex size-16 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-500 shadow-[0_8px_24px_rgba(242,169,0,0.15)] border border-brand-100/30"
+            className="flex size-12 sm:size-16 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-500 shadow-[0_8px_24px_rgba(242,169,0,0.15)] border border-brand-100/30"
           >
-            <TelegramIcon className="size-8" />
+            <TelegramIcon className="size-6 sm:size-8" />
           </motion.span>
           
           <motion.div variants={item}>
-            <span className="text-[10px] font-black uppercase tracking-wider text-brand-600">Сообщество здоровья</span>
-            <h2 className="mt-1 font-display text-2xl font-extrabold text-ink sm:text-3xl">
+            <span className="text-[9px] font-black uppercase tracking-wider text-brand-600">Сообщество здоровья</span>
+            <h2 className="mt-0.5 font-display text-xl font-extrabold text-ink sm:text-3xl">
               Мы в Telegram
             </h2>
-            <p className="mt-2.5 text-sm sm:text-base leading-relaxed text-ink-muted/90">
+            <p className="mt-2 text-xs sm:text-base leading-relaxed text-ink-muted/90">
               Полезные рецепты, новинки и специальные предложения от BONE BOUILLON —
               публикуем первыми в нашем канале. Присоединяйтесь!
             </p>
@@ -52,11 +52,11 @@ export function TelegramSection() {
         <motion.div variants={item} className="relative shrink-0 w-full md:w-auto">
           <a href={CONTACT.telegramChannel} target="_blank" rel="noopener noreferrer" className="block w-full">
             <Button
-              size="lg"
-              className="w-full shadow-[0_8px_30px_rgba(242,169,0,0.25)]"
+              size="md"
+              className="w-full shadow-[0_8px_30px_rgba(242,169,0,0.25)] text-xs font-bold"
             >
               Подписаться
-              <ArrowRight className="size-5" />
+              <ArrowRight className="size-4" />
             </Button>
           </a>
         </motion.div>

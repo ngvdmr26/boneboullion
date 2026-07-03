@@ -33,10 +33,10 @@ export function BenefitsBar() {
           <motion.div
             key={title}
             variants={card}
-            className="flex flex-col items-start gap-4 rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-line/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shrink-0 w-[260px] snap-center lg:w-auto lg:shrink"
+            className="flex flex-col items-start gap-3 rounded-2xl bg-white/80 p-4.5 shadow-sm ring-1 ring-line/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg shrink-0 w-[215px] snap-center lg:w-auto lg:shrink"
           >
-            <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 to-brand-600 text-white shadow-[0_4px_12px_rgba(242,169,0,0.3)]">
-              <Icon className="size-6" strokeWidth={2.2} />
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 to-brand-600 text-white shadow-[0_4px_12px_rgba(242,169,0,0.3)]">
+              <Icon className="size-5" strokeWidth={2.2} />
             </span>
             <div>
               <h3 className="font-display text-base font-bold leading-tight">{title}</h3>
